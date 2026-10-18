@@ -8,6 +8,13 @@
       "when": 1792357209256,
       "tag": "0000_clau_schema_part1",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792357336450,
+      "tag": "0001_clau_schema_part2",
+      "breakpoints": true
     }
   ]
 }

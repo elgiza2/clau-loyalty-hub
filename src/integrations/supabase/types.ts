@@ -318,6 +318,212 @@ export type Database = {
         Returns: number
       }
       game_get_own_profile: { Args: { _telegram_id: number }; Returns: Json }
+      game_is_wallet_verified: {
+        Args: { _telegram_id: number }
+        Returns: boolean
+      }
+      game_place_bet_for_telegram: {
+        Args: { _game_slug: string; _stake: number; _telegram_id: number }
+        Returns: Json
+      }
+      game_play_round: {
+        Args: {
+          _game_slug: string
+          _params?: Json
+          _stake: number
+          _telegram_id: number
+        }
+        Returns: Json
+      }
+      game_profile_id: { Args: { _telegram_id: number }; Returns: string }
+      game_public_profiles: {
+        Args: { _ids: string[] }
+        Returns: {
+          first_name: string
+          id: string
+          photo_url: string
+          username: string
+        }[]
+      }
+      game_settle_bet_for_telegram: {
+        Args: { _bet_id: string; _telegram_id: number; _won: boolean }
+        Returns: Json
+      }
+      get_battle_inventory_for_telegram: {
+        Args: { _telegram_id: number }
+        Returns: Json
+      }
+      get_payment_discount_for_telegram: {
+        Args: { _telegram_id: number }
+        Returns: Json
+      }
+      get_referral_summary_for_telegram: {
+        Args: { _telegram_id: number }
+        Returns: Json
+      }
+      get_server_time: { Args: never; Returns: string }
+      grant_prize_to_all: { Args: never; Returns: Json }
+      grant_referral_reward: {
+        Args: {
+          _buyer_profile_id: string
+          _source_id: string
+          _source_type: string
+          _ton_amount: number
+        }
+        Returns: number
+      }
+      grant_welcome_prize: { Args: { _telegram_id: number }; Returns: Json }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_telegram_admin: { Args: { _telegram_id: number }; Returns: boolean }
+      next_prize_broadcast_targets: {
+        Args: { _limit: number }
+        Returns: {
+          first_name: string
+          id: string
+          telegram_id: number
+        }[]
+      }
+      perform_attack_for_telegram: {
+        Args: {
+          _attack_type?: string
+          _package_key?: string
+          _telegram_id: number
+        }
+        Returns: Json
+      }
+      purchase_battle_item_for_telegram: {
+        Args: {
+          _category: string
+          _package_key: string
+          _package_name: string
+          _quantity: number
+          _telegram_id: number
+          _ton_paid: number
+          _tx_hash?: string
+          _wallet_address?: string
+        }
+        Returns: Json
+      }
+      purchase_battle_item_with_balance: {
+        Args: {
+          _category: string
+          _package_key: string
+          _package_name: string
+          _price: number
+          _quantity: number
+          _telegram_id: number
+        }
+        Returns: Json
+      }
+      purchase_battle_item_with_intent: {
+        Args: {
+          _category: string
+          _intent_id: string
+          _package_key: string
+          _package_name: string
+          _quantity: number
+          _telegram_id: number
+          _wallet_address?: string
+        }
+        Returns: Json
+      }
+      purchase_server_for_telegram: {
+        Args: {
+          _server_id: string
+          _telegram_id: number
+          _ton_paid: number
+          _tx_hash?: string
+          _wallet_address?: string
+        }
+        Returns: Json
+      }
+      purchase_server_with_balance: {
+        Args: { _server_id: string; _telegram_id: number }
+        Returns: Json
+      }
+      purchase_server_with_intent: {
+        Args: {
+          _intent_id: string
+          _server_id: string
+          _telegram_id: number
+          _wallet_address?: string
+        }
+        Returns: Json
+      }
+      pvp_add_bots: {
+        Args: { _count: number; _match_id: string }
+        Returns: Json
+      }
+      pvp_buy_character: {
+        Args: {
+          _character_key: string
+          _telegram_id: number
+          _ton_paid: number
+          _tx_hash: string
+        }
+        Returns: Json
+      }
+      pvp_buy_weapon: {
+        Args: {
+          _telegram_id: number
+          _ton_paid: number
+          _tx_hash: string
+          _weapon_key: string
+        }
+        Returns: Json
+      }
+      pvp_equip_character: {
+        Args: { _character_key: string; _telegram_id: number }
+        Returns: Json
+      }
+      pvp_find_or_create_match: {
+        Args: { _mode?: string; _telegram_id: number; _weapon_key?: string }
+        Returns: Json
+      }
+      pvp_finish_match: {
+        Args: { _match_id: string; _telegram_id: number }
+        Returns: Json
+      }
+      pvp_get_characters: { Args: { _telegram_id: number }; Returns: Json }
+      pvp_get_loadout: { Args: { _telegram_id: number }; Returns: Json }
+      pvp_leaderboard: { Args: { _limit?: number }; Returns: Json }
+      pvp_report_frag: {
+        Args: {
+          _alive: boolean
+          _deaths: number
+          _kills: number
+          _match_id: string
+          _score: number
+          _telegram_id: number
+        }
+        Returns: Json
+      }
+      pvp_set_match_character: {
+        Args: {
+          _character_key: string
+          _match_id: string
+          _telegram_id: number
+        }
+        Returns: Json
+      }
+      pvp_start_match: { Args: { _match_id: string }; Returns: Json }
+      queue_telegram_notification: {
+        Args: {
+          _message: string
+          _metadata?: Json
+          _notification_type: string
+          _profile_id: string
+          _scheduled_for?: string
+          _title: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       app_role: "admin" | "user"
