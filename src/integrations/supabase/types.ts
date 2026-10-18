@@ -39,7 +39,15 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "ad_watch_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       ai_generations: {
         Row: {
@@ -183,7 +191,22 @@ export type Database = {
           ton_spent?: number | null
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "attacks_character_id_fkey"
+            columns: ["character_id"]
+            isOneToOne: false
+            referencedRelation: "characters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attacks_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       auto_notification_log: {
         Row: {
@@ -207,7 +230,15 @@ export type Database = {
           topic?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "auto_notification_log_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       battle_inventory: {
         Row: {
@@ -243,7 +274,15 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "battle_inventory_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       characters: {
         Row: {
@@ -282,7 +321,15 @@ export type Database = {
           ton_pool?: number | null
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "characters_defeated_by_fkey"
+            columns: ["defeated_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       crash_notification_log: {
         Row: {
@@ -303,7 +350,15 @@ export type Database = {
           profile_id?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "crash_notification_log_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       game_bets: {
         Row: {
@@ -450,7 +505,15 @@ export type Database = {
           usdt_reward?: number
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "mining_sessions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       prize_broadcast_log: {
         Row: {
@@ -531,7 +594,15 @@ export type Database = {
           username?: string | null
           wallet_address?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_referred_by_fkey"
+            columns: ["referred_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       pvp_character_owned: {
         Row: {
@@ -564,7 +635,15 @@ export type Database = {
           tx_hash?: string | null
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "pvp_character_owned_character_key_fkey"
+            columns: ["character_key"]
+            isOneToOne: false
+            referencedRelation: "pvp_characters"
+            referencedColumns: ["key"]
+          },
+        ]
       }
       pvp_characters: {
         Row: {
@@ -663,7 +742,15 @@ export type Database = {
           username?: string
           weapon_key?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "pvp_match_players_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "pvp_matches"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       pvp_matches: {
         Row: {
@@ -765,7 +852,15 @@ export type Database = {
           tx_hash?: string | null
           weapon_key?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "pvp_weapon_owned_weapon_key_fkey"
+            columns: ["weapon_key"]
+            isOneToOne: false
+            referencedRelation: "pvp_weapons"
+            referencedColumns: ["key"]
+          },
+        ]
       }
       pvp_weapons: {
         Row: {
@@ -846,7 +941,22 @@ export type Database = {
           source_type?: string
           ton_amount?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "referral_rewards_referred_user_id_fkey"
+            columns: ["referred_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referral_rewards_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       servers: {
         Row: {
@@ -951,7 +1061,22 @@ export type Database = {
           status?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "stakes_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "staking_plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stakes_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       staking_personal_offers: {
         Row: {
@@ -990,7 +1115,15 @@ export type Database = {
           starts_at?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "staking_personal_offers_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       staking_plans: {
         Row: {
@@ -1188,7 +1321,15 @@ export type Database = {
           title?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "telegram_notifications_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       telegram_task_drafts: {
         Row: {
@@ -1320,7 +1461,15 @@ export type Database = {
           verification_status?: string
           wallet_address?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "transactions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_nfts: {
         Row: {
@@ -1404,7 +1553,22 @@ export type Database = {
           ton_paid?: number
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "user_servers_server_id_fkey"
+            columns: ["server_id"]
+            isOneToOne: false
+            referencedRelation: "servers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_servers_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_tasks: {
         Row: {
@@ -1425,7 +1589,22 @@ export type Database = {
           task_id?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "user_tasks_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_tasks_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
