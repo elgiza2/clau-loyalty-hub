@@ -15,6 +15,13 @@
       "when": 1792357336450,
       "tag": "0001_clau_schema_part2",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792363168237,
+      "tag": "0002_clau_schema_part3",
+      "breakpoints": true
     }
   ]
 }

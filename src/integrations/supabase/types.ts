@@ -14,6 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
+      ad_watch_progress: {
+        Row: {
+          ads_watched: number
+          ads_watched_b: number
+          total_claims: number
+          total_claims_b: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ads_watched?: number
+          ads_watched_b?: number
+          total_claims?: number
+          total_claims_b?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ads_watched?: number
+          ads_watched_b?: number
+          total_claims?: number
+          total_claims_b?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      ai_generations: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          model: string
+          profile_id: string
+          prompt: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          model: string
+          profile_id: string
+          prompt: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          model?: string
+          profile_id?: string
+          prompt?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      ai_smart_offers: {
+        Row: {
+          bonus_pct: number
+          context: Json
+          created_at: string
+          cta: string
+          expires_at: string
+          focus: string
+          headline: string
+          id: string
+          message: string
+          telegram_id: number
+        }
+        Insert: {
+          bonus_pct?: number
+          context?: Json
+          created_at?: string
+          cta?: string
+          expires_at?: string
+          focus?: string
+          headline?: string
+          id?: string
+          message?: string
+          telegram_id: number
+        }
+        Update: {
+          bonus_pct?: number
+          context?: Json
+          created_at?: string
+          cta?: string
+          expires_at?: string
+          focus?: string
+          headline?: string
+          id?: string
+          message?: string
+          telegram_id?: number
+        }
+        Relationships: []
+      }
       ai_subscriptions: {
         Row: {
           created_at: string
@@ -50,6 +146,1284 @@ export type Database = {
           status?: string
           updated_at?: string
           videos_used?: number
+        }
+        Relationships: []
+      }
+      attacks: {
+        Row: {
+          attack_type: string
+          character_id: string
+          created_at: string
+          damage: number
+          id: string
+          is_killing_blow: boolean | null
+          metadata: Json
+          ton_spent: number | null
+          user_id: string
+        }
+        Insert: {
+          attack_type?: string
+          character_id: string
+          created_at?: string
+          damage: number
+          id?: string
+          is_killing_blow?: boolean | null
+          metadata?: Json
+          ton_spent?: number | null
+          user_id: string
+        }
+        Update: {
+          attack_type?: string
+          character_id?: string
+          created_at?: string
+          damage?: number
+          id?: string
+          is_killing_blow?: boolean | null
+          metadata?: Json
+          ton_spent?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      auto_notification_log: {
+        Row: {
+          created_at: string
+          last_sent_at: string
+          profile_id: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id: string
+          topic?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      battle_inventory: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          package_key: string
+          package_name: string
+          quantity: number
+          total_purchased: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          package_key: string
+          package_name: string
+          quantity?: number
+          total_purchased?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          package_key?: string
+          package_name?: string
+          quantity?: number
+          total_purchased?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      characters: {
+        Row: {
+          created_at: string
+          current_hp: number
+          defeated_by: string | null
+          id: string
+          image_url: string
+          is_active: boolean | null
+          max_hp: number
+          name: string
+          ton_pool: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_hp?: number
+          defeated_by?: string | null
+          id?: string
+          image_url: string
+          is_active?: boolean | null
+          max_hp?: number
+          name: string
+          ton_pool?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_hp?: number
+          defeated_by?: string | null
+          id?: string
+          image_url?: string
+          is_active?: boolean | null
+          max_hp?: number
+          name?: string
+          ton_pool?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      crash_notification_log: {
+        Row: {
+          created_at: string
+          last_sent_at: string
+          profile_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      game_bets: {
+        Row: {
+          created_at: string
+          game_slug: string
+          id: string
+          meta: Json
+          multiplier: number
+          payout: number
+          settled_at: string | null
+          stake: number
+          status: string
+          telegram_id: number
+        }
+        Insert: {
+          created_at?: string
+          game_slug: string
+          id?: string
+          meta?: Json
+          multiplier?: number
+          payout?: number
+          settled_at?: string | null
+          stake: number
+          status?: string
+          telegram_id: number
+        }
+        Update: {
+          created_at?: string
+          game_slug?: string
+          id?: string
+          meta?: Json
+          multiplier?: number
+          payout?: number
+          settled_at?: string | null
+          stake?: number
+          status?: string
+          telegram_id?: number
+        }
+        Relationships: []
+      }
+      game_crash_rounds: {
+        Row: {
+          crash_multiplier: number
+          created_at: string
+          round_id: number
+        }
+        Insert: {
+          crash_multiplier: number
+          created_at?: string
+          round_id: number
+        }
+        Update: {
+          crash_multiplier?: number
+          created_at?: string
+          round_id?: number
+        }
+        Relationships: []
+      }
+      game_notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          title: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          title: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          title?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      mining_reminders: {
+        Row: {
+          created_at: string
+          last_sent_at: string
+          profile_id: string
+          sent_count: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id: string
+          sent_count?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id?: string
+          sent_count?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      mining_sessions: {
+        Row: {
+          claimed: boolean | null
+          created_at: string
+          ends_at: string
+          id: string
+          reward_amount: number | null
+          siri_reward: number
+          started_at: string
+          ton_reward: number
+          usdt_reward: number
+          user_id: string
+        }
+        Insert: {
+          claimed?: boolean | null
+          created_at?: string
+          ends_at: string
+          id?: string
+          reward_amount?: number | null
+          siri_reward?: number
+          started_at?: string
+          ton_reward?: number
+          usdt_reward?: number
+          user_id: string
+        }
+        Update: {
+          claimed?: boolean | null
+          created_at?: string
+          ends_at?: string
+          id?: string
+          reward_amount?: number | null
+          siri_reward?: number
+          started_at?: string
+          ton_reward?: number
+          usdt_reward?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      prize_broadcast_log: {
+        Row: {
+          delivered: boolean
+          profile_id: string
+          sent_at: string
+        }
+        Insert: {
+          delivered?: boolean
+          profile_id: string
+          sent_at?: string
+        }
+        Update: {
+          delivered?: boolean
+          profile_id?: string
+          sent_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          first_name: string
+          id: string
+          is_banned: boolean | null
+          last_name: string | null
+          photo_url: string | null
+          referral_code: string | null
+          referred_by: string | null
+          reward_balance: number | null
+          reward_expires_at: string | null
+          siri_balance: number | null
+          telegram_id: number
+          ton_balance: number | null
+          updated_at: string
+          usdt_balance: number | null
+          user_id: string | null
+          username: string | null
+          wallet_address: string | null
+        }
+        Insert: {
+          created_at?: string
+          first_name?: string
+          id?: string
+          is_banned?: boolean | null
+          last_name?: string | null
+          photo_url?: string | null
+          referral_code?: string | null
+          referred_by?: string | null
+          reward_balance?: number | null
+          reward_expires_at?: string | null
+          siri_balance?: number | null
+          telegram_id: number
+          ton_balance?: number | null
+          updated_at?: string
+          usdt_balance?: number | null
+          user_id?: string | null
+          username?: string | null
+          wallet_address?: string | null
+        }
+        Update: {
+          created_at?: string
+          first_name?: string
+          id?: string
+          is_banned?: boolean | null
+          last_name?: string | null
+          photo_url?: string | null
+          referral_code?: string | null
+          referred_by?: string | null
+          reward_balance?: number | null
+          reward_expires_at?: string | null
+          siri_balance?: number | null
+          telegram_id?: number
+          ton_balance?: number | null
+          updated_at?: string
+          usdt_balance?: number | null
+          user_id?: string | null
+          username?: string | null
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      pvp_character_owned: {
+        Row: {
+          character_key: string
+          created_at: string
+          equipped: boolean
+          id: string
+          profile_id: string
+          ton_paid: number
+          tx_hash: string | null
+          updated_at: string
+        }
+        Insert: {
+          character_key: string
+          created_at?: string
+          equipped?: boolean
+          id?: string
+          profile_id: string
+          ton_paid?: number
+          tx_hash?: string | null
+          updated_at?: string
+        }
+        Update: {
+          character_key?: string
+          created_at?: string
+          equipped?: boolean
+          id?: string
+          profile_id?: string
+          ton_paid?: number
+          tx_hash?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pvp_characters: {
+        Row: {
+          color: string
+          created_at: string
+          hp_mod: number
+          id: string
+          key: string
+          name: string
+          price_ton: number
+          rarity: string
+          sort_order: number
+          speed_mod: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          hp_mod?: number
+          id?: string
+          key: string
+          name: string
+          price_ton?: number
+          rarity?: string
+          sort_order?: number
+          speed_mod?: number
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          hp_mod?: number
+          id?: string
+          key?: string
+          name?: string
+          price_ton?: number
+          rarity?: string
+          sort_order?: number
+          speed_mod?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pvp_match_players: {
+        Row: {
+          alive: boolean
+          character_key: string
+          deaths: number
+          id: string
+          is_bot: boolean
+          joined_at: string
+          kills: number
+          match_id: string
+          photo_url: string | null
+          profile_id: string | null
+          score: number
+          slot: number
+          telegram_id: number | null
+          username: string
+          weapon_key: string
+        }
+        Insert: {
+          alive?: boolean
+          character_key?: string
+          deaths?: number
+          id?: string
+          is_bot?: boolean
+          joined_at?: string
+          kills?: number
+          match_id: string
+          photo_url?: string | null
+          profile_id?: string | null
+          score?: number
+          slot?: number
+          telegram_id?: number | null
+          username?: string
+          weapon_key?: string
+        }
+        Update: {
+          alive?: boolean
+          character_key?: string
+          deaths?: number
+          id?: string
+          is_bot?: boolean
+          joined_at?: string
+          kills?: number
+          match_id?: string
+          photo_url?: string | null
+          profile_id?: string | null
+          score?: number
+          slot?: number
+          telegram_id?: number | null
+          username?: string
+          weapon_key?: string
+        }
+        Relationships: []
+      }
+      pvp_matches: {
+        Row: {
+          arena_seed: number
+          created_at: string
+          ends_at: string | null
+          id: string
+          max_players: number
+          mode: string
+          prize_ton: number
+          started_at: string | null
+          status: string
+          updated_at: string
+          winner_profile_id: string | null
+        }
+        Insert: {
+          arena_seed?: number
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          max_players?: number
+          mode?: string
+          prize_ton?: number
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+          winner_profile_id?: string | null
+        }
+        Update: {
+          arena_seed?: number
+          created_at?: string
+          ends_at?: string | null
+          id?: string
+          max_players?: number
+          mode?: string
+          prize_ton?: number
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+          winner_profile_id?: string | null
+        }
+        Relationships: []
+      }
+      pvp_stats: {
+        Row: {
+          deaths: number
+          kills: number
+          matches: number
+          profile_id: string
+          rating: number
+          ton_earned: number
+          updated_at: string
+          wins: number
+        }
+        Insert: {
+          deaths?: number
+          kills?: number
+          matches?: number
+          profile_id: string
+          rating?: number
+          ton_earned?: number
+          updated_at?: string
+          wins?: number
+        }
+        Update: {
+          deaths?: number
+          kills?: number
+          matches?: number
+          profile_id?: string
+          rating?: number
+          ton_earned?: number
+          updated_at?: string
+          wins?: number
+        }
+        Relationships: []
+      }
+      pvp_weapon_owned: {
+        Row: {
+          created_at: string
+          id: string
+          profile_id: string
+          ton_paid: number
+          tx_hash: string | null
+          weapon_key: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          profile_id: string
+          ton_paid?: number
+          tx_hash?: string | null
+          weapon_key: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          profile_id?: string
+          ton_paid?: number
+          tx_hash?: string | null
+          weapon_key?: string
+        }
+        Relationships: []
+      }
+      pvp_weapons: {
+        Row: {
+          bullet_speed: number
+          color: string
+          created_at: string
+          damage: number
+          fire_rate_ms: number
+          is_default: boolean
+          key: string
+          name: string
+          pellets: number
+          price_ton: number
+          range_px: number
+          rarity: string
+          sort_order: number
+          spread: number
+        }
+        Insert: {
+          bullet_speed?: number
+          color?: string
+          created_at?: string
+          damage?: number
+          fire_rate_ms?: number
+          is_default?: boolean
+          key: string
+          name: string
+          pellets?: number
+          price_ton?: number
+          range_px?: number
+          rarity?: string
+          sort_order?: number
+          spread?: number
+        }
+        Update: {
+          bullet_speed?: number
+          color?: string
+          created_at?: string
+          damage?: number
+          fire_rate_ms?: number
+          is_default?: boolean
+          key?: string
+          name?: string
+          pellets?: number
+          price_ton?: number
+          range_px?: number
+          rarity?: string
+          sort_order?: number
+          spread?: number
+        }
+        Relationships: []
+      }
+      referral_rewards: {
+        Row: {
+          created_at: string
+          id: string
+          referred_user_id: string
+          referrer_id: string
+          source_id: string | null
+          source_type: string
+          ton_amount: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          referred_user_id: string
+          referrer_id: string
+          source_id?: string | null
+          source_type: string
+          ton_amount?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          referred_user_id?: string
+          referrer_id?: string
+          source_id?: string | null
+          source_type?: string
+          ton_amount?: number
+        }
+        Relationships: []
+      }
+      servers: {
+        Row: {
+          attack_boost: number | null
+          created_at: string
+          id: string
+          image_url: string
+          is_active: boolean | null
+          mining_boost: number | null
+          name: string
+          price_ton: number
+          rarity: string
+          ton_mining_rate: number | null
+          updated_at: string
+          usdt_mining_rate: number | null
+        }
+        Insert: {
+          attack_boost?: number | null
+          created_at?: string
+          id?: string
+          image_url: string
+          is_active?: boolean | null
+          mining_boost?: number | null
+          name: string
+          price_ton: number
+          rarity?: string
+          ton_mining_rate?: number | null
+          updated_at?: string
+          usdt_mining_rate?: number | null
+        }
+        Update: {
+          attack_boost?: number | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          is_active?: boolean | null
+          mining_boost?: number | null
+          name?: string
+          price_ton?: number
+          rarity?: string
+          ton_mining_rate?: number | null
+          updated_at?: string
+          usdt_mining_rate?: number | null
+        }
+        Relationships: []
+      }
+      stakes: {
+        Row: {
+          amount: number
+          apr: number
+          claimed_yield: number
+          closed_at: string | null
+          created_at: string
+          currency: string
+          duration_days: number
+          early_exit_fee_pct: number
+          ends_at: string
+          funded_amount: number
+          id: string
+          last_claim_at: string
+          plan_id: string
+          profile_id: string
+          started_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          apr: number
+          claimed_yield?: number
+          closed_at?: string | null
+          created_at?: string
+          currency: string
+          duration_days: number
+          early_exit_fee_pct?: number
+          ends_at: string
+          funded_amount: number
+          id?: string
+          last_claim_at?: string
+          plan_id: string
+          profile_id: string
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          apr?: number
+          claimed_yield?: number
+          closed_at?: string | null
+          created_at?: string
+          currency?: string
+          duration_days?: number
+          early_exit_fee_pct?: number
+          ends_at?: string
+          funded_amount?: number
+          id?: string
+          last_claim_at?: string
+          plan_id?: string
+          profile_id?: string
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      staking_personal_offers: {
+        Row: {
+          created_at: string
+          currency: string
+          expires_at: string
+          id: string
+          is_active: boolean
+          message_sent_at: string | null
+          multiplier: number
+          profile_id: string
+          starts_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          expires_at: string
+          id?: string
+          is_active?: boolean
+          message_sent_at?: string | null
+          multiplier?: number
+          profile_id: string
+          starts_at?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          expires_at?: string
+          id?: string
+          is_active?: boolean
+          message_sent_at?: string | null
+          multiplier?: number
+          profile_id?: string
+          starts_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      staking_plans: {
+        Row: {
+          apr: number
+          created_at: string
+          currency: string
+          duration_days: number
+          early_exit_fee_pct: number
+          id: string
+          is_active: boolean
+          max_amount: number | null
+          min_amount: number
+          name: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          apr: number
+          created_at?: string
+          currency: string
+          duration_days: number
+          early_exit_fee_pct?: number
+          id?: string
+          is_active?: boolean
+          max_amount?: number | null
+          min_amount?: number
+          name: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          apr?: number
+          created_at?: string
+          currency?: string
+          duration_days?: number
+          early_exit_fee_pct?: number
+          id?: string
+          is_active?: boolean
+          max_amount?: number | null
+          min_amount?: number
+          name?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      star_payments: {
+        Row: {
+          charge_id: string | null
+          created_at: string
+          id: string
+          meta: Json
+          paid_at: string | null
+          payload: string
+          product: string
+          profile_id: string | null
+          stars: number
+          status: string
+          telegram_id: number | null
+        }
+        Insert: {
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          meta?: Json
+          paid_at?: string | null
+          payload: string
+          product: string
+          profile_id?: string | null
+          stars: number
+          status?: string
+          telegram_id?: number | null
+        }
+        Update: {
+          charge_id?: string | null
+          created_at?: string
+          id?: string
+          meta?: Json
+          paid_at?: string | null
+          payload?: string
+          product?: string
+          profile_id?: string | null
+          stars?: number
+          status?: string
+          telegram_id?: number | null
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          is_pinned: boolean
+          link: string | null
+          reward_amount: number
+          reward_type: string
+          task_type: string
+          title: string
+          updated_at: string
+          verification_type: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          is_pinned?: boolean
+          link?: string | null
+          reward_amount: number
+          reward_type?: string
+          task_type?: string
+          title: string
+          updated_at?: string
+          verification_type?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          is_pinned?: boolean
+          link?: string | null
+          reward_amount?: number
+          reward_type?: string
+          task_type?: string
+          title?: string
+          updated_at?: string
+          verification_type?: string
+        }
+        Relationships: []
+      }
+      telegram_admins: {
+        Row: {
+          created_at: string
+          telegram_id: number
+          welcome_image_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          telegram_id: number
+          welcome_image_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          telegram_id?: number
+          welcome_image_url?: string | null
+        }
+        Relationships: []
+      }
+      telegram_notifications: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          id: string
+          message: string
+          metadata: Json
+          notification_type: string
+          profile_id: string
+          scheduled_for: string
+          sent_at: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          message: string
+          metadata?: Json
+          notification_type: string
+          profile_id: string
+          scheduled_for?: string
+          sent_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          message?: string
+          metadata?: Json
+          notification_type?: string
+          profile_id?: string
+          scheduled_for?: string
+          sent_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      telegram_task_drafts: {
+        Row: {
+          created_at: string
+          draft: Json
+          telegram_id: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          draft?: Json
+          telegram_id: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          draft?: Json
+          telegram_id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ton_payment_intents: {
+        Row: {
+          action: string
+          amount_nano: number
+          base_amount_nano: number | null
+          boc: string | null
+          confirmed_at: string | null
+          created_at: string
+          credited_at: string | null
+          discount_pct: number
+          discount_reason: string | null
+          expires_at: string
+          failure_reason: string | null
+          id: string
+          memo: string
+          metadata: Json
+          status: string
+          telegram_id: number
+          tx_hash: string | null
+          updated_at: string
+          wallet_address: string | null
+        }
+        Insert: {
+          action: string
+          amount_nano: number
+          base_amount_nano?: number | null
+          boc?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          credited_at?: string | null
+          discount_pct?: number
+          discount_reason?: string | null
+          expires_at?: string
+          failure_reason?: string | null
+          id?: string
+          memo: string
+          metadata?: Json
+          status?: string
+          telegram_id: number
+          tx_hash?: string | null
+          updated_at?: string
+          wallet_address?: string | null
+        }
+        Update: {
+          action?: string
+          amount_nano?: number
+          base_amount_nano?: number | null
+          boc?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          credited_at?: string | null
+          discount_pct?: number
+          discount_reason?: string | null
+          expires_at?: string
+          failure_reason?: string | null
+          id?: string
+          memo?: string
+          metadata?: Json
+          status?: string
+          telegram_id?: number
+          tx_hash?: string | null
+          updated_at?: string
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string
+          id: string
+          metadata: Json | null
+          status: string
+          tx_hash: string | null
+          type: string
+          updated_at: string
+          user_id: string
+          verification_status: string
+          wallet_address: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          currency?: string
+          id?: string
+          metadata?: Json | null
+          status?: string
+          tx_hash?: string | null
+          type: string
+          updated_at?: string
+          user_id: string
+          verification_status?: string
+          wallet_address?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          id?: string
+          metadata?: Json | null
+          status?: string
+          tx_hash?: string | null
+          type?: string
+          updated_at?: string
+          user_id?: string
+          verification_status?: string
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      user_nfts: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string
+          name: string
+          price_ton: number
+          profile_id: string | null
+          rarity: string
+          storage_path: string | null
+          telegram_id: number
+          tx_hash: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url: string
+          name?: string
+          price_ton?: number
+          profile_id?: string | null
+          rarity?: string
+          storage_path?: string | null
+          telegram_id: number
+          tx_hash?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string
+          name?: string
+          price_ton?: number
+          profile_id?: string | null
+          rarity?: string
+          storage_path?: string | null
+          telegram_id?: number
+          tx_hash?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_servers: {
+        Row: {
+          id: string
+          purchased_at: string
+          server_id: string
+          ton_paid: number
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          purchased_at?: string
+          server_id: string
+          ton_paid: number
+          user_id: string
+        }
+        Update: {
+          id?: string
+          purchased_at?: string
+          server_id?: string
+          ton_paid?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_tasks: {
+        Row: {
+          completed_at: string
+          id: string
+          task_id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          id?: string
+          task_id: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          id?: string
+          task_id?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -523,6 +1897,51 @@ export type Database = {
           _title: string
         }
         Returns: string
+      }
+      request_withdrawal_for_telegram: {
+        Args: {
+          _amount: number
+          _currency: string
+          _telegram_id: number
+          _wallet_address?: string
+        }
+        Returns: Json
+      }
+      staking_claim_for_telegram: {
+        Args: { _stake_id: string; _telegram_id: number }
+        Returns: Json
+      }
+      staking_create_for_telegram: {
+        Args: { _amount: number; _plan_id: string; _telegram_id: number }
+        Returns: Json
+      }
+      staking_get_overview_for_telegram: {
+        Args: { _telegram_id: number }
+        Returns: Json
+      }
+      staking_pending_yield: {
+        Args: { _stake: Database["public"]["Tables"]["stakes"]["Row"] }
+        Returns: number
+      }
+      staking_unstake_for_telegram: {
+        Args: { _stake_id: string; _telegram_id: number }
+        Returns: Json
+      }
+      start_mining_for_telegram: {
+        Args: { _telegram_id: number }
+        Returns: Json
+      }
+      sync_mining_for_telegram: {
+        Args: { _telegram_id: number }
+        Returns: Json
+      }
+      verify_wallet_with_intent: {
+        Args: {
+          _intent_id: string
+          _telegram_id: number
+          _wallet_address?: string
+        }
+        Returns: Json
       }
     }
     Enums: {
