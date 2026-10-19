@@ -7,9 +7,14 @@ export async function maybeProxy(request: Request): Promise<Response | null> {
   const target = `${origin.replace(/\/$/, "")}${url.pathname}${url.search}`;
   const headers = new Headers(request.headers);
   headers.delete("host");
+  headers.delete("accept-encoding");
   headers.set("x-forwarded-host", url.host);
   const init: RequestInit = { method: request.method, headers, redirect: "manual" };
   if (request.method !== "GET" && request.method !== "HEAD") init.body = await request.arrayBuffer();
   const res = await fetch(target, init);
-  return new Response(res.body, { status: res.status, headers: res.headers });
+  const out = new Headers(res.headers);
+  out.delete("content-encoding");
+  out.delete("content-length");
+  out.delete("transfer-encoding");
+  return new Response(res.body, { status: res.status, headers: out });
 }
