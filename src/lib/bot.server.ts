@@ -44,7 +44,11 @@ async function uploadPhoto(fileId: string): Promise<string> {
     .from("task-images")
     .upload(path, bytes, { contentType: ext === "png" ? "image/png" : "image/jpeg" });
   if (error) throw error;
-  return supabaseAdmin.storage.from("task-images").getPublicUrl(path).data.publicUrl;
+  const { data, error: signErr } = await supabaseAdmin.storage
+    .from("task-images")
+    .createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
+  if (signErr || !data) throw signErr ?? new Error("sign failed");
+  return data.signedUrl;
 }
 
 async function stats(chat: number) {
