@@ -33,7 +33,7 @@
 
 @layer base {
   :root {
-    /* White + mint green + soft pink — Nova light theme */
+    /* White + mint green + soft pink — Clau light theme */
     --background: 160 16% 6%;
     --foreground: 0 0% 100%;
     --card: 220 12% 10%;
@@ -370,7 +370,7 @@
     backdrop-filter: blur(18px) saturate(140%);
   }
 
-  /* ---- Nova editorial UI kit (merged design language) ---- */
+  /* ---- Clau editorial UI kit (merged design language) ---- */
   .nv-card {
     background: rgba(18, 26, 24, 0.6);
     border-radius: 24px;

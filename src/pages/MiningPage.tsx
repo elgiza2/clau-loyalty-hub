@@ -23,7 +23,7 @@ const MiningPage = () => {
   }, [getMiningTimeLeft, getMiningProgress]);
 
   return (
-    <SpotlightHero title="NOVA AI" center>
+    <SpotlightHero title="CLAU AI" center>
       <div className="flex w-full flex-col px-5 pb-28 pt-2">
         <motion.div
           className="nv-card p-6"
@@ -31,7 +31,7 @@ const MiningPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="nv-eyebrow block text-center">$NOVA Balance</p>
+          <p className="nv-eyebrow block text-center">$CLAU Balance</p>
           <p className="hero-title mt-1.5 text-center text-[56px] leading-none tracking-tight">
             {user.siriBalance.toLocaleString("en-US", { maximumFractionDigits: 2 })}
           </p>

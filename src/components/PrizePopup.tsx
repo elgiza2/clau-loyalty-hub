@@ -44,7 +44,7 @@ const PrizePopup = () => {
         <div className="relative aspect-[16/9] overflow-hidden">
           <img
             src={prizeImage.url}
-            alt="Nova prize reward"
+            alt="Clau prize reward"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-card/15 to-transparent" />

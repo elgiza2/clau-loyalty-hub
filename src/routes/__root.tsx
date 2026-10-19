@@ -91,16 +91,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover",
       },
-      { title: "Nova AI - Mine, Battle & Earn Gram" },
+      { title: "Clau - Mine, Battle & Earn Gram" },
       {
         name: "description",
-        content: "Nova AI: mine NOVA, battle monsters, and earn Gram cryptocurrency",
+        content: "Clau: mine CLAU, battle monsters, and earn Gram cryptocurrency",
       },
-      { name: "author", content: "Nova AI" },
-      { property: "og:title", content: "Nova AI - Mine, Battle & Earn Gram" },
+      { name: "author", content: "Clau" },
+      { property: "og:title", content: "Clau - Mine, Battle & Earn Gram" },
       {
         property: "og:description",
-        content: "Nova AI: mine NOVA, battle monsters, and earn Gram cryptocurrency",
+        content: "Clau: mine CLAU, battle monsters, and earn Gram cryptocurrency",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

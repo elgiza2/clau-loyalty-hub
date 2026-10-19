@@ -24,7 +24,7 @@ interface Task {
 const REWARD_LABEL: Record<string, string> = {
   ton: "Gram",
   usdt: "USDT",
-  siri: "$NOVA",
+  siri: "$CLAU",
 };
 
 const TasksPage = () => {
@@ -143,9 +143,9 @@ const TasksPage = () => {
   const shareReferral = () => {
     const tg = (window as any).Telegram?.WebApp;
     if (tg?.openTelegramLink) {
-      tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent("Join Nova AI and earn Gram & USDT!")}`);
+      tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent("Join Clau and earn Gram & USDT!")}`);
     } else {
-      window.open(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent("Join Nova AI and earn Gram & USDT!")}`, "_blank");
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent("Join Clau and earn Gram & USDT!")}`, "_blank");
     }
   };
 
@@ -176,7 +176,7 @@ const TasksPage = () => {
               <div className="space-y-2">
               <AnimatePresence>
                 {availableTasks.map((task, i) => {
-                  const label = REWARD_LABEL[task.reward_type] || "$NOVA";
+                  const label = REWARD_LABEL[task.reward_type] || "$CLAU";
 
                   return (
                     <motion.div key={task.id} layout
@@ -267,7 +267,7 @@ const TasksPage = () => {
                   <p className="text-xs text-muted-foreground">Share your referral link with friends</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <p className="text-xs text-muted-foreground">They join Nova AI and start playing</p>
+                  <p className="text-xs text-muted-foreground">They join Clau and start playing</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <p className="text-xs text-muted-foreground">Earn <span className="text-ton-blue font-bold">50%</span> of every Gram purchase they make!</p>

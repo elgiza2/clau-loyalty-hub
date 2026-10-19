@@ -5,8 +5,8 @@ export const Route = createFileRoute("/")({
   component: Page,
   head: () => ({
     meta: [
-      { title: "Nova AI - Mine, Battle & Earn Gram" },
-      { name: "description", content: "Nova AI: mine NOVA, battle monsters, and earn Gram cryptocurrency" },
+      { title: "Clau - Mine, Battle & Earn Gram" },
+      { name: "description", content: "Clau: mine CLAU, battle monsters, and earn Gram cryptocurrency" },
     ],
   }),
 });
