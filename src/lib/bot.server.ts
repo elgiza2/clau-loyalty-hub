@@ -2,6 +2,7 @@
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { tg, esc, botToken } from "./telegram.server";
 import { STARS_PRODUCTS } from "./fn-handlers.server";
+import welcomeImage from "@/assets/clau-welcome.jpg.asset.json";
 
 type Draft = { step?: "title" | "image" | "link" | "broadcast"; title?: string; image_url?: string };
 
@@ -237,8 +238,13 @@ export async function handleUpdate(update: any, appUrl: string) {
 
   if (text.startsWith("/start")) {
     const name = esc(msg.from?.first_name ?? "there");
-    return send(chat, `👋 Welcome to <b>Clau</b>, ${name}!\n\nMine, complete tasks, battle and earn rewards.`, {
-      reply_markup: { inline_keyboard: [[{ text: "🚀 Open Clau", web_app: { url: appUrl } }]] },
-    });
+    const caption = `👋 Welcome to <b>Clau</b>, ${name}!\n\nMine $CLAU, complete tasks, battle and earn rewards.`;
+    const reply_markup = { inline_keyboard: [[{ text: "🚀 Open Clau", web_app: { url: appUrl } }]] };
+    try {
+      return await tg("sendPhoto", { chat_id: chat, photo: `${appUrl}${welcomeImage.url}`, caption, parse_mode: "HTML", reply_markup });
+    } catch (e) {
+      console.error("[bot] sendPhoto failed", e);
+      return send(chat, caption, { reply_markup });
+    }
   }
 }
