@@ -17,7 +17,7 @@ export const Route = createFileRoute("/api/public/telegram-webhook")({
           const { handleUpdate } = await import("@/lib/bot.server");
           const appUrl = process.env["APP_URL"] || new URL(request.url).origin;
           try {
-            await handleUpdate(update, appUrl);
+            await handleUpdate(update, appUrl, new URL(request.url).origin);
           } catch (e) {
             console.error("[bot]", e);
           }
