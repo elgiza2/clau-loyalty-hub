@@ -229,24 +229,65 @@ async function telegramBotAction(req: Request) {
 }
 
 // ── AI ──────────────────────────────────────────────────────────────────────
-const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
+const AIG = "https://ai.gateway.lovable.dev/v1";
+const aigHeaders = () => ({
+  "Lovable-API-Key": String(process.env["LOVABLE_API_KEY"] ?? ""),
+  Authorization: `Bearer ${process.env["LOVABLE_API_KEY"]}`,
+  "Content-Type": "application/json",
+  "X-Lovable-AIG-SDK": "fetch",
+});
 
 async function aiChat(req: Request) {
   const body = await readBody(req);
-  const messages = Array.isArray(body.messages) ? body.messages.slice(-20) : [];
-  const res = await fetch(GATEWAY, {
+  const messages = (Array.isArray(body.messages) ? body.messages.slice(-20) : [])
+    .filter((m: any) => m && typeof m.content === "string")
+    .map((m: any) => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content }));
+  const res = await fetch(`${AIG}/responses`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${process.env["LOVABLE_API_KEY"]}`, "Content-Type": "application/json" },
+    headers: aigHeaders(),
     body: JSON.stringify({
-      model: "google/gemini-3-flash-preview",
+      model: "openai/gpt-6-astra",
       stream: true,
-      messages: [{ role: "system", content: "You are Clau AI, a friendly helpful assistant inside the Clau Telegram app." }, ...messages],
+      store: false,
+      reasoning: { effort: "low" },
+      instructions: "You are Clau AI, a friendly helpful assistant inside the Clau Telegram app.",
+      input: messages,
     }),
   });
   if (res.status === 429) return json({ error: "Too many requests, try again shortly." }, 429);
   if (res.status === 402) return json({ error: "AI credits exhausted." }, 402);
   if (!res.ok || !res.body) return json({ error: "AI unavailable" }, 502);
-  return new Response(res.body, { headers: { "Content-Type": "text/event-stream" } });
+  // Re-emit Responses deltas in the chat-completions SSE shape the page reads.
+  const enc = new TextEncoder();
+  const dec = new TextDecoder();
+  const reader = res.body.getReader();
+  const stream = new ReadableStream({
+    async start(controller) {
+      let buf = "";
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let i: number;
+        while ((i = buf.indexOf("\n")) >= 0) {
+          const line = buf.slice(0, i).trim();
+          buf = buf.slice(i + 1);
+          if (!line.startsWith("data:")) continue;
+          try {
+            const ev = JSON.parse(line.slice(5).trim());
+            if (ev.type === "response.output_text.delta" && ev.delta) {
+              controller.enqueue(enc.encode(`data: ${JSON.stringify({ choices: [{ delta: { content: ev.delta } }] })}\n\n`));
+            }
+          } catch {
+            /* ignore */
+          }
+        }
+      }
+      controller.enqueue(enc.encode("data: [DONE]\n\n"));
+      controller.close();
+    },
+  });
+  return new Response(stream, { headers: { "Content-Type": "text/event-stream" } });
 }
 
 async function aiMedia(req: Request) {
@@ -254,18 +295,15 @@ async function aiMedia(req: Request) {
   if (body.kind === "video") return json({ error: "Video generation is not available yet." }, 400);
   const prompt = String(body.prompt ?? "").slice(0, 1000);
   if (!prompt) return json({ error: "Missing prompt" }, 400);
-  const res = await fetch(GATEWAY, {
+  const res = await fetch(`${AIG}/images/generations`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${process.env["LOVABLE_API_KEY"]}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      model: "google/gemini-2.5-flash-image",
-      messages: [{ role: "user", content: prompt }],
-      modalities: ["image", "text"],
-    }),
+    headers: aigHeaders(),
+    body: JSON.stringify({ model: "openai/gpt-image-2.5-sunburst", prompt, n: 1 }),
   });
   if (!res.ok) return json({ error: "Image generation failed" }, 502);
   const data = (await res.json()) as any;
-  const url = data?.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+  const item = data?.data?.[0];
+  const url = item?.url ?? (item?.b64_json ? `data:image/png;base64,${item.b64_json}` : null);
   if (!url) return json({ error: "No image returned" }, 502);
   return json({ url, kind: "image", model: "clau-image" });
 }
