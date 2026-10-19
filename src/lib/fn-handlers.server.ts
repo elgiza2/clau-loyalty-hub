@@ -151,7 +151,7 @@ async function verifyTonTransaction(req: Request) {
 
 function tonconnectManifest(req: Request) {
   const url = new URL(req.url);
-  let origin = url.origin;
+  let origin = process.env["APP_URL"] || url.origin;
   const raw = url.searchParams.get("origin");
   if (raw) {
     try {
