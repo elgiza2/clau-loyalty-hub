@@ -201,8 +201,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         usdt: Number(freshProfile?.usdt_balance ?? profile.usdt_balance ?? 0),
       };
 
-      // Every player holds the $25,000 prize, shown in Gram at the live market price.
-      const prizeGram = prizeInGram(GRAM_USD_FALLBACK);
 
       const dbReward = 0;
       const dbRewardExpires = null;
@@ -213,7 +211,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         telegramUser,
         profileId: profile.id,
         siriBalance: balances.siri,
-        tonBalance: balances.ton + prizeGram,
+        tonBalance: balances.ton,
         usdtBalance: balances.usdt,
         rewardBalance: dbReward,
         rewardExpiresAt: dbRewardExpires,

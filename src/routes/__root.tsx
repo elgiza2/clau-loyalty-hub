@@ -15,7 +15,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppProvider } from "@/context/AppContext";
 import BottomNav from "@/components/BottomNav";
-import PrizePopup from "@/components/PrizePopup";
 import StarryBackground from "@/components/StarryBackground";
 import { resolveTonManifestUrl } from "@/lib/tonconnect-manifest";
 
@@ -188,7 +187,6 @@ function RootComponent() {
             <Toaster />
             <AppProvider>
               <StarryBackground />
-              <PrizePopup />
               <div className="max-w-lg mx-auto relative z-10">
                 <Outlet />
                 <BottomNav />

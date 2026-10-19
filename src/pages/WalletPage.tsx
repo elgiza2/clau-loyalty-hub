@@ -204,14 +204,24 @@ const WalletPage = () => {
     }
   };
 
-  // Step 1: accept the requested amount, whatever the balance is.
-  const handleWithdrawContinue = () => {
+  // Withdrawals only accept real balance and never ask for an upfront fee.
+  const handleWithdrawContinue = async () => {
     const amount = parseFloat(withdrawAmount);
     if (!amount || amount < 1) {
       toast({ title: `Minimum 1 ${withdrawCurrency === "ton" ? "Gram" : "USDT"}`, variant: "destructive" });
       return;
     }
-    setWithdrawStep("fee");
+    const balance = withdrawCurrency === "ton" ? user.tonBalance : user.usdtBalance;
+    if (amount > balance) {
+      toast({ title: "Not enough balance", variant: "destructive" });
+      return;
+    }
+    setFeeBusy(true);
+    try {
+      await handleWithdrawInner();
+    } finally {
+      setFeeBusy(false);
+    }
   };
 
   // Step 2: the user must pay the withdrawal fee before the request is sent.
