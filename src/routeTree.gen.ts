@@ -19,6 +19,7 @@ import { Route as StakingRouteImport } from './routes/staking'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as WarRouteImport } from './routes/war'
+import { Route as ApiPublicFnNameRouteImport } from './routes/api/public/fn.$name'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +71,11 @@ const WarRoute = WarRouteImport.update({
   path: '/war',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicFnNameRoute = ApiPublicFnNameRouteImport.update({
+  id: '/api/public/fn/$name',
+  path: '/api/public/fn/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/war': typeof WarRoute
+  '/api/public/fn/$name': typeof ApiPublicFnNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/war': typeof WarRoute
+  '/api/public/fn/$name': typeof ApiPublicFnNameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/war': typeof WarRoute
+  '/api/public/fn/$name': typeof ApiPublicFnNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/wallet'
     | '/war'
+    | '/api/public/fn/$name'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/wallet'
     | '/war'
+    | '/api/public/fn/$name'
   id:
     | '__root__'
     | '/'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/wallet'
     | '/war'
+    | '/api/public/fn/$name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +170,7 @@ export interface RootRouteChildren {
   TasksRoute: typeof TasksRoute
   WalletRoute: typeof WalletRoute
   WarRoute: typeof WarRoute
+  ApiPublicFnNameRoute: typeof ApiPublicFnNameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/fn/$name': {
+      id: '/api/public/fn/$name'
+      path: '/api/public/fn/$name'
+      fullPath: '/api/public/fn/$name'
+      preLoaderRoute: typeof ApiPublicFnNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   TasksRoute: TasksRoute,
   WalletRoute: WalletRoute,
   WarRoute: WarRoute,
+  ApiPublicFnNameRoute: ApiPublicFnNameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
