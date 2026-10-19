@@ -178,7 +178,7 @@ async function handleStarsPayment(msg: any) {
     const serverId = product.slice(7);
     const { data: server } = await supabaseAdmin.from("servers").select("price_ton").eq("id", serverId).maybeSingle();
     await supabaseAdmin.rpc("purchase_server_for_telegram", {
-      _telegram_id: row.telegram_id,
+      _telegram_id: Number(row.telegram_id),
       _server_id: serverId,
       _ton_paid: Number(server?.price_ton ?? 0),
       _wallet_address: null as never,
@@ -186,13 +186,13 @@ async function handleStarsPayment(msg: any) {
     });
   }
   const p = STARS_PRODUCTS[product];
-  if (p?.aiPro) await supabaseAdmin.rpc("ai_activate_plan", { _profile_id: row.profile_id, _plan: "unlimited", _price: 0 });
+  if (p?.aiPro) await supabaseAdmin.rpc("ai_activate_plan", { _profile_id: String(row.profile_id), _plan: "unlimited", _price: 0 });
   if (p && p.usdt > 0) {
-    const { data: prof } = await supabaseAdmin.from("profiles").select("usdt_balance").eq("id", row.profile_id).maybeSingle();
+    const { data: prof } = await supabaseAdmin.from("profiles").select("usdt_balance").eq("id", String(row.profile_id)).maybeSingle();
     await supabaseAdmin
       .from("profiles")
       .update({ usdt_balance: Number(prof?.usdt_balance ?? 0) + p.usdt })
-      .eq("id", row.profile_id);
+      .eq("id", String(row.profile_id));
   }
   await supabaseAdmin
     .from("star_payments")
