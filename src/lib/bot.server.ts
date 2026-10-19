@@ -206,7 +206,7 @@ async function handleStarsPayment(msg: any) {
   await send(msg.chat.id, `✅ Payment received — ${esc(p?.title ?? product)} is now active.`);
 }
 
-export async function handleUpdate(update: any, appUrl: string) {
+export async function handleUpdate(update: any, appUrl: string, assetOrigin: string = appUrl) {
   if (update.callback_query) return handleCallback(update.callback_query);
   if (update.pre_checkout_query) {
     return tg("answerPreCheckoutQuery", { pre_checkout_query_id: update.pre_checkout_query.id, ok: true });
@@ -241,7 +241,7 @@ export async function handleUpdate(update: any, appUrl: string) {
     const caption = `👋 Welcome to <b>Clau</b>, ${name}!\n\nMine $CLAU, complete tasks, battle and earn rewards.`;
     const reply_markup = { inline_keyboard: [[{ text: "🚀 Open Clau", web_app: { url: appUrl } }]] };
     try {
-      return await tg("sendPhoto", { chat_id: chat, photo: `${appUrl}${welcomeImage.url}`, caption, parse_mode: "HTML", reply_markup });
+      return await tg("sendPhoto", { chat_id: chat, photo: `${assetOrigin}${welcomeImage.url}`, caption, parse_mode: "HTML", reply_markup });
     } catch (e) {
       console.error("[bot] sendPhoto failed", e);
       return send(chat, caption, { reply_markup });

@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { maybeProxy } from "@/lib/api-proxy";
 
 // Telegram calls this with the secret_token we registered; anything else is rejected.
 export const Route = createFileRoute("/api/public/telegram-webhook")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        const proxied = await maybeProxy(request);
+        if (proxied) return proxied;
         const { webhookSecret } = await import("@/lib/telegram.server");
         if (request.headers.get("x-telegram-bot-api-secret-token") !== (await webhookSecret())) {
           return new Response("forbidden", { status: 403 });
@@ -12,9 +15,9 @@ export const Route = createFileRoute("/api/public/telegram-webhook")({
         const update = await request.json().catch(() => null);
         if (update) {
           const { handleUpdate } = await import("@/lib/bot.server");
-          const appUrl = new URL(request.url).origin;
+          const appUrl = process.env["APP_URL"] || new URL(request.url).origin;
           try {
-            await handleUpdate(update, appUrl);
+            await handleUpdate(update, appUrl, new URL(request.url).origin);
           } catch (e) {
             console.error("[bot]", e);
           }
@@ -23,17 +26,20 @@ export const Route = createFileRoute("/api/public/telegram-webhook")({
       },
       // One-time setup: registers this deployment as the bot's webhook.
       GET: async ({ request }) => {
+        const proxied = await maybeProxy(request);
+        if (proxied) return proxied;
         const url = new URL(request.url);
         const { tg, webhookSecret, botToken } = await import("@/lib/telegram.server");
         if (url.searchParams.get("setup") !== botToken().split(":")[0]) {
           return new Response("forbidden", { status: 403 });
         }
+        const publicOrigin = process.env["APP_URL"] || url.origin;
         await tg("setWebhook", {
-          url: `${url.origin}/api/public/telegram-webhook`,
+          url: `${publicOrigin}/api/public/telegram-webhook`,
           secret_token: await webhookSecret(),
           allowed_updates: ["message", "callback_query", "pre_checkout_query"],
         });
-        await tg("setChatMenuButton", { menu_button: { type: "web_app", text: "Clau", web_app: { url: url.origin } } });
+        await tg("setChatMenuButton", { menu_button: { type: "web_app", text: "Clau", web_app: { url: publicOrigin } } });
         return new Response("webhook set");
       },
     },
