@@ -1,14 +1,30 @@
-# Welcome to your Lovable project
+# Clau Loyalty Hub
+
+استورد المستودع ده 
+
+https://github.com/elgiza2/loyal-vault5
+
+واعمله قاعدة بيانات جديده وتصميم جديد لكل الصفحات واوعي تمث قاعدة البيانات القديمه بتاعته
+
+غير تصميم كل الصفحات عدا صفحة اللعبه 
+
+وغير اسم اللعبه الي Clau 
+
+وده توكن البوت شغله وشغل لوحة الادمن لتتبع عدد المستخدمين وإرسال رساله لكل المستخدمين وايضا لإضافة ومسح وتعين مهام جديده تكون عباره عن صوره واسم ورابط واطلبهم بشكل منفصل بحيث ارسل الإثم ثم الصوره ثم رابط المهمه 
+
+ده توكن البوت 
+
+8611810608:AAFiXo0i_nuWrulkf4vc4ks1s1QFPAwQZSg
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/0cd73ad9-c3b5-4d14-b1ae-1d14ab388eba).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +36,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
