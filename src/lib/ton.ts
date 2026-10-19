@@ -1,3 +1,4 @@
+import { invokeFn } from "@/lib/fn";
 import { SUPABASE_PROJECT_ID, SUPABASE_PUBLISHABLE_KEY } from "@/lib/supabase-config";
 import type { TonConnectUI } from "@tonconnect/ui-react";
 import { beginCell } from "@ton/core";
@@ -122,7 +123,7 @@ export const sendTonPayment = async (
     throw new PaymentError("wrong_network", "Switch your wallet to TON Mainnet and try again");
   }
 
-  const { data: intent, error: intentError } = await supabase.functions.invoke("create-ton-payment-intent", {
+  const { data: intent, error: intentError } = await invokeFn("create-ton-payment-intent", {
     body: { telegram_id: opts.telegramId, action: opts.action, amount_ton: amountTon, metadata: opts.metadata ?? {} },
   });
   if (intentError || !intent?.id || !intent?.memo) {
@@ -179,7 +180,7 @@ export const sendTonPayment = async (
 /** Polls the backend, which checks the treasury wallet on-chain for this memo. */
 const waitForIntentOnChain = async (intentId: string, sender?: string | null) => {
   const projectId = SUPABASE_PROJECT_ID;
-  const url = `https://${projectId}.supabase.co/functions/v1/verify-ton-transaction`;
+  const url = "/api/public/fn/verify-ton-transaction";
   const deadline = Date.now() + 90_000;
   while (Date.now() < deadline) {
     try {

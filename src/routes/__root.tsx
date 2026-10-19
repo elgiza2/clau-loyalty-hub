@@ -118,7 +118,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap",
       },
-      { rel: "preconnect", href: "https://iqosbhbbyzqozfgpthyj.supabase.co", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: import.meta.env.VITE_SUPABASE_URL, crossOrigin: "anonymous" },
       { rel: "preconnect", href: "https://telegram.org" },
     ],
     scripts: [

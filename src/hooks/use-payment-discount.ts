@@ -1,3 +1,4 @@
+import { invokeFn } from "@/lib/fn";
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useApp } from "@/context/AppContext";
@@ -71,7 +72,7 @@ export const usePaymentDiscount = () => {
       if (!telegramId) return false;
       setThinking(true);
       try {
-        const { error } = await supabase.functions.invoke("ai-smart-offer", {
+        const { error } = await invokeFn("ai-smart-offer", {
           body: { telegram_id: telegramId, surface },
         });
         // Fallback: generate the offer directly in the backend when the AI

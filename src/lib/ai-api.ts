@@ -1,3 +1,4 @@
+import { invokeFn } from "@/lib/fn";
 import { supabase } from "@/integrations/supabase/client";
 
 export type AiMode = "chat" | "code" | "image" | "video";
@@ -54,7 +55,7 @@ export interface MediaResult {
 }
 
 const invoke = async <T,>(fn: string, body: unknown): Promise<T> => {
-  const { data, error } = await supabase.functions.invoke(fn, { body: body as never });
+  const { data, error } = await invokeFn(fn, { body: body as never });
   if (error) throw new Error(error.message);
   if (data && typeof data === "object" && "error" in (data as Record<string, unknown>)) {
     throw new Error(String((data as Record<string, unknown>).error));

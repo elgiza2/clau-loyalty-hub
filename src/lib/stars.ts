@@ -1,3 +1,4 @@
+import { invokeFn } from "@/lib/fn";
 import { supabase } from "@/integrations/supabase/client";
 
 export type StarsProductId = "ai_pro" | "usdt_5" | "usdt_10" | "usdt_25" | "server";
@@ -40,7 +41,7 @@ export async function payWithStars(
 ): Promise<string> {
   if (!profileId) throw new Error("Profile not ready yet");
 
-  const { data, error } = await supabase.functions.invoke("telegram-bot", {
+  const { data, error } = await invokeFn("telegram-bot", {
     body: {
       action: "starsInvoice",
       product,

@@ -208,7 +208,7 @@ export const verifyTonOnChain = async (
   sender?: string | null,
 ): Promise<{ verified: boolean; tx_hash?: string; error?: string }> => {
   const projectId = SUPABASE_PROJECT_ID;
-  const res = await fetch(`https://${projectId}.supabase.co/functions/v1/verify-ton-transaction`, {
+  const res = await fetch("/api/public/fn/verify-ton-transaction", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
