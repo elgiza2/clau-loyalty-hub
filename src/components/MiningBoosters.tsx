@@ -142,7 +142,7 @@ const MiningBoosters = () => {
             type="button"
             onClick={() => void buy(kind)}
             disabled={busy === kind}
-            className="h-8 shrink-0 rounded-full bg-white px-3.5 text-[11px] font-semibold text-black disabled:opacity-60"
+            className="h-8 shrink-0 rounded-full bg-primary px-3.5 text-[11px] font-semibold text-primary-foreground disabled:opacity-60"
           >
             {busy === kind ? "…" : `${priceForLevel(levels[kind])} TON`}
           </button>
