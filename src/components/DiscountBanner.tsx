@@ -24,7 +24,7 @@ const DiscountBanner = ({ discount, onSmartOffer, thinking }: Props) => {
       animate={{ opacity: 1, y: 0 }}
       className="mb-5 flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.06] py-2 pl-3 pr-2 backdrop-blur-xl"
     >
-      <span className="flex h-9 min-w-[54px] items-center justify-center rounded-full bg-white px-2.5 font-display text-[15px] leading-none text-black">
+      <span className="flex h-9 min-w-[54px] items-center justify-center rounded-full bg-primary px-2.5 font-display text-[15px] leading-none text-primary-foreground">
         {total}%
       </span>
 

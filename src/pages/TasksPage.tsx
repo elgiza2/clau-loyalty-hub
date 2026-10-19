@@ -19,6 +19,7 @@ interface Task {
   link: string | null;
   verification_type: string;
   is_pinned: boolean;
+  image_url?: string | null;
 }
 
 const REWARD_LABEL: Record<string, string> = {
@@ -37,7 +38,7 @@ const TasksPage = () => {
   const [claiming, setClaiming] = useState<string | null>(null);
   const [referralSummary, setReferralSummary] = useState<ReferralSummary>({ count: 0, ton_earned: 0, users: [], rewards: [] });
 
-  const referralLink = `https://t.me/Noveaibot/App?startapp=${user.referralCode}`;
+  const referralLink = `https://t.me/sramaibot?startapp=${user.referralCode}`;
 
   useEffect(() => {
     void Promise.all([loadTasks(), loadCompletedTasks(), loadReferralSummary()]);
@@ -49,7 +50,7 @@ const TasksPage = () => {
       async () => {
         const { data } = await supabase
           .from("tasks")
-          .select("id, title, description, reward_amount, reward_type, task_type, link, verification_type, is_pinned")
+          .select("id, title, description, image_url, reward_amount, reward_type, task_type, link, verification_type, is_pinned")
           .eq("is_active", true)
           .order("is_pinned", { ascending: false })
           .order("created_at", { ascending: true });
@@ -188,7 +189,7 @@ const TasksPage = () => {
                         <div className="flex items-center gap-3.5">
                           <div className="h-12 w-12 shrink-0 overflow-hidden rounded-2xl border border-border bg-card">
                             <img
-                              src={artForTask(task.title)}
+                              src={task.image_url || artForTask(task.title)}
                               alt=""
                               loading="lazy"
                               decoding="async"
