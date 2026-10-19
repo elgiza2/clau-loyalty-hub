@@ -19,6 +19,7 @@ import { Route as StakingRouteImport } from './routes/staking'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as WarRouteImport } from './routes/war'
+import { Route as ApiPublicTelegramWebhookRouteImport } from './routes/api/public/telegram-webhook'
 import { Route as ApiPublicFnNameRouteImport } from './routes/api/public/fn.$name'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +72,12 @@ const WarRoute = WarRouteImport.update({
   path: '/war',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicTelegramWebhookRoute =
+  ApiPublicTelegramWebhookRouteImport.update({
+    id: '/api/public/telegram-webhook',
+    path: '/api/public/telegram-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicFnNameRoute = ApiPublicFnNameRouteImport.update({
   id: '/api/public/fn/$name',
   path: '/api/public/fn/$name',
@@ -88,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/war': typeof WarRoute
+  '/api/public/telegram-webhook': typeof ApiPublicTelegramWebhookRoute
   '/api/public/fn/$name': typeof ApiPublicFnNameRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +109,7 @@ export interface FileRoutesByTo {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/war': typeof WarRoute
+  '/api/public/telegram-webhook': typeof ApiPublicTelegramWebhookRoute
   '/api/public/fn/$name': typeof ApiPublicFnNameRoute
 }
 export interface FileRoutesById {
@@ -115,6 +124,7 @@ export interface FileRoutesById {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/war': typeof WarRoute
+  '/api/public/telegram-webhook': typeof ApiPublicTelegramWebhookRoute
   '/api/public/fn/$name': typeof ApiPublicFnNameRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/wallet'
     | '/war'
+    | '/api/public/telegram-webhook'
     | '/api/public/fn/$name'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/wallet'
     | '/war'
+    | '/api/public/telegram-webhook'
     | '/api/public/fn/$name'
   id:
     | '__root__'
@@ -156,6 +168,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/wallet'
     | '/war'
+    | '/api/public/telegram-webhook'
     | '/api/public/fn/$name'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +183,7 @@ export interface RootRouteChildren {
   TasksRoute: typeof TasksRoute
   WalletRoute: typeof WalletRoute
   WarRoute: typeof WarRoute
+  ApiPublicTelegramWebhookRoute: typeof ApiPublicTelegramWebhookRoute
   ApiPublicFnNameRoute: typeof ApiPublicFnNameRoute
 }
 
@@ -245,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/telegram-webhook': {
+      id: '/api/public/telegram-webhook'
+      path: '/api/public/telegram-webhook'
+      fullPath: '/api/public/telegram-webhook'
+      preLoaderRoute: typeof ApiPublicTelegramWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/fn/$name': {
       id: '/api/public/fn/$name'
       path: '/api/public/fn/$name'
@@ -266,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   TasksRoute: TasksRoute,
   WalletRoute: WalletRoute,
   WarRoute: WarRoute,
+  ApiPublicTelegramWebhookRoute: ApiPublicTelegramWebhookRoute,
   ApiPublicFnNameRoute: ApiPublicFnNameRoute,
 }
 export const routeTree = rootRouteImport
