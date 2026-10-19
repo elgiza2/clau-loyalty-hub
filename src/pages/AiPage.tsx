@@ -68,8 +68,8 @@ const MODES: { id: Mode; label: string; icon: typeof MessageCircle; placeholder:
 
 const BASE_URL = SUPABASE_URL;
 const ANON_KEY = SUPABASE_PUBLISHABLE_KEY;
-const CHAT_URL = `${BASE_URL}/functions/v1/chat-alibaba`;
-const MEDIA_URL = `${BASE_URL}/functions/v1/ai-deapi`;
+const CHAT_URL = "/api/public/fn/ai-chat";
+const MEDIA_URL = "/api/public/fn/ai-deapi";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
