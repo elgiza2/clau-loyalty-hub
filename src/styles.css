@@ -33,21 +33,21 @@
 
 @layer base {
   :root {
-    /* White + mint green + soft pink — Clau light theme */
-    --background: 160 16% 6%;
+    /* Clau: deep ink + ember orange + amber */
+    --background: 228 24% 7%;
     --foreground: 0 0% 100%;
-    --card: 220 12% 10%;
+    --card: 228 20% 11%;
     --card-foreground: 0 0% 100%;
-    --popover: 220 12% 10%;
+    --popover: 228 20% 11%;
     --popover-foreground: 0 0% 100%;
-    --primary: 158 78% 40%;
+    --primary: 24 95% 56%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 164 80% 62%;
-    --secondary: 220 12% 16%;
+    --primary-glow: 36 100% 64%;
+    --secondary: 228 18% 16%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 220 10% 18%;
-    --muted-foreground: 220 8% 78%;
-    --accent: 338 85% 68%;
+    --muted: 228 16% 18%;
+    --muted-foreground: 228 12% 70%;
+    --accent: 46 100% 62%;
     --accent-foreground: 0 0% 100%;
     --action: 0 0% 100%;
     --action-foreground: 220 14% 10%;
@@ -56,10 +56,10 @@
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 100% / 0.14;
     --input: 0 0% 100% / 0.12;
-    --ring: 158 78% 40%;
-    --radius: 1.5rem;
+    --ring: 24 95% 56%;
+    --radius: 1rem;
     --ton-blue: 216 100% 56%;
-    --neon-green: 158 78% 40%;
+    --neon-green: 24 95% 56%;
     /* Aviator game surface — clean cyan/space palette */
     --aviator: 188 100% 55%;
     --aviator-glow: 190 100% 72%;
@@ -82,7 +82,7 @@
     --sidebar-ring: 158 78% 40%;
 
     /* Liquid glass material tokens */
-    --glass-tint: 160 14% 10%;
+    --glass-tint: 228 22% 12%;
     --glass-opacity: 0.7;
     --glass-blur: 22px;
     --glass-border: 0 0% 100%;
@@ -110,7 +110,7 @@
   body {
     color: hsl(var(--foreground));
     background: transparent;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
     -webkit-user-select: none;
     user-select: none;
@@ -415,7 +415,7 @@
     color: hsl(0 0% 100%);
   }
   .nv-eyebrow {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 10px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
@@ -818,7 +818,7 @@ button.mining-active-btn::after {
 }
 
 /* ===== CodeNest hero ===== */
-.codenest { font-family: 'Inter', sans-serif; }
+.codenest { font-family: 'DM Sans', sans-serif; }
 .cn-jakarta { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; }
 .cn-serif { font-family: 'ITC Garamond Narrow', 'Playfair Display', serif; }
 

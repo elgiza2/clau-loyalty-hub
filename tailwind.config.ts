@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["ITC Garamond Narrow", "Playfair Display", "serif"],
+        display: ["Space Grotesk", "sans-serif"],
         serif: ["Playfair Display", "serif"],
-        sans: ["Inter", "sans-serif"],
+        sans: ["DM Sans", "sans-serif"],
         geist: ["Geist", "sans-serif"],
         typewriter: ["Special Elite", "serif"],
       },
