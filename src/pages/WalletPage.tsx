@@ -141,7 +141,7 @@ const WalletPage = () => {
 
   const gramPrice = markets["gram"]?.price || GRAM_USD_FALLBACK;
   const balances = [
-    { symbol: "$NOVA", balance: user.siriBalance, icon: NOVA_ICON, price: 0, usd: 0 },
+    { symbol: "$CLAU", balance: user.siriBalance, icon: NOVA_ICON, price: 0, usd: 0 },
     {
       symbol: "Gram",
       balance: user.tonBalance,
@@ -204,14 +204,24 @@ const WalletPage = () => {
     }
   };
 
-  // Step 1: accept the requested amount, whatever the balance is.
-  const handleWithdrawContinue = () => {
+  // Withdrawals only accept real balance and never ask for an upfront fee.
+  const handleWithdrawContinue = async () => {
     const amount = parseFloat(withdrawAmount);
     if (!amount || amount < 1) {
       toast({ title: `Minimum 1 ${withdrawCurrency === "ton" ? "Gram" : "USDT"}`, variant: "destructive" });
       return;
     }
-    setWithdrawStep("fee");
+    const balance = withdrawCurrency === "ton" ? user.tonBalance : user.usdtBalance;
+    if (amount > balance) {
+      toast({ title: "Not enough balance", variant: "destructive" });
+      return;
+    }
+    setFeeBusy(true);
+    try {
+      await handleWithdrawInner();
+    } finally {
+      setFeeBusy(false);
+    }
   };
 
   // Step 2: the user must pay the withdrawal fee before the request is sent.
@@ -389,7 +399,7 @@ const WalletPage = () => {
               <p className="font-display text-base text-foreground">
                 {b.balance.toLocaleString("en-US", { maximumFractionDigits: 4 })}
               </p>
-              {b.symbol !== "$NOVA" && (
+              {b.symbol !== "$CLAU" && (
                 <p className="text-[11px] text-muted-foreground">
                   ≈ ${b.usd.toLocaleString("en-US", { maximumFractionDigits: 2 })}
                 </p>
@@ -510,7 +520,7 @@ const WalletPage = () => {
         <DialogContent className="fixed bottom-auto left-1/2 right-auto top-1/2 w-[calc(100%-1.5rem)] max-w-[380px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-border bg-card p-0 shadow-2xl sm:left-1/2 sm:top-1/2 sm:w-[calc(100%-1.5rem)] sm:max-w-[380px] sm:-translate-x-1/2 sm:-translate-y-1/2">
           <div className="relative text-center">
             <div className="relative aspect-[2/1] overflow-hidden">
-              <img src={prizeImage.url} alt="Nova withdrawal reward" className="h-full w-full object-cover" />
+              <img src={prizeImage.url} alt="Clau withdrawal reward" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
               <div className="absolute bottom-4 left-5 flex items-center gap-2 rounded-full bg-background/80 px-3 py-2 text-xs font-semibold text-foreground backdrop-blur-md">
                 <WalletCards className="h-4 w-4 text-primary" />
